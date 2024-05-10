@@ -52,6 +52,7 @@ class MouseLockerApp:
         time.sleep(self.usetime)  
         self.locked = True
         self.lock_mouse()
+        requests.post('https://notify-api.line.me/api/notify', headers=self.headers, data={'message':'    目前無人使用' }) 
 
     def move_mouse_to_center(self):
         while self.locked:
