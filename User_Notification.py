@@ -19,7 +19,7 @@ class MouseLockerApp:
         self.headers = {
             'Authorization': 'Bearer ' + '9lkUbDS0zxrkbJX8VixsaNzE7qGSnH9TqmxwRH8eN39'    
         }
-        data = requests.post('https://notify-api.line.me/api/notify', headers=self.headers, data={'message':'    目前無人使用' }) 
+        # data = requests.post('https://notify-api.line.me/api/notify', headers=self.headers, data={'message':'    目前無人使用' }) 
         self.root = root
         self.root.title("Mouse Locker")
         
@@ -52,12 +52,16 @@ class MouseLockerApp:
         time.sleep(self.usetime)  
         self.locked = True
         self.lock_mouse()
-        requests.post('https://notify-api.line.me/api/notify', headers=self.headers, data={'message':'    目前無人使用' }) 
+        # requests.post('https://notify-api.line.me/api/notify', headers=self.headers, data={'message':'    目前無人使用' }) 
 
     def move_mouse_to_center(self):
         while self.locked:
-            screen_width, screen_height = pyautogui.size()
-            pyautogui.moveTo(screen_width // 2, screen_height // 2)
+            # screen_width, screen_height = pyautogui.size()
+            # print(screen_width, screen_height)
+            try :
+                pyautogui.moveTo(1, 1)
+            except: 
+                print("erro")
 
     def check_name(self, event):
         self.lock_mouse()
@@ -68,7 +72,7 @@ class MouseLockerApp:
             self.locked = False
             self.unlock_mouse()
             name="    "+name+" 使用中,使用時間："+str(self.usetime) + "秒"
-            requests.post('https://notify-api.line.me/api/notify', headers=self.headers, data={'message':name }) 
+            # requests.post('https://notify-api.line.me/api/notify', headers=self.headers, data={'message':name }) 
         else:
             self.welcome_label.config(text="Please enter a valid name.")
 
